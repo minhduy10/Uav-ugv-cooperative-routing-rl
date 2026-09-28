@@ -1,0 +1,71 @@
+# ============================================================
+# UAV-UGV Routing RL - Large Configuration
+# ============================================================
+
+scale_name: Large
+
+# Scenario
+num_tasks: 100
+map_size: 40.0
+
+# ============================================================
+# Training
+# ============================================================
+
+training:
+  # Large-scale scenario requires more training.
+  #
+  # Original experimental schedule:
+  #
+  # BC  : 50 episodes
+  # PPO : 200 episodes
+  # SIL : 250 episodes
+  #
+  # Total = 500
+
+  # Phase 1: Behavioral Cloning
+  bc_epochs: 50
+
+  # Phase 2: PPO Fine-tuning
+  rl_episodes: 200
+
+  # Phase 3: Self-Imitation Learning
+  sil_episodes: 250
+
+  # Base learning rate.
+  #
+  # SuperiorityAgent automatically applies:
+  #
+  # effective_lr = learning_rate * 0.7
+  #
+  # for Large scenarios.
+  learning_rate: 0.0002
+
+  # Loss weights
+  bc_weight: 1.0
+
+  # Large experiments use a slightly stronger SIL weight.
+  sil_weight: 0.6
+
+  # PPO exploration temperature
+  rl_temperature_start: 1.5
+  rl_temperature_end: 0.7
+
+  # SIL exploration temperature
+  sil_temperature: 0.8
+
+  # Maximum episode length
+  max_steps_multiplier: 5
+
+  # Reproducibility
+  seed: 42
+
+
+# ============================================================
+# Expert planner
+# ============================================================
+
+expert:
+  expert_solver: heuristic
+
+  cpsat_limit_s: 10.0

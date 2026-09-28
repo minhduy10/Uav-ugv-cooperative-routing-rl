@@ -1,0 +1,53 @@
+# ============================================================
+# UAV-UGV Routing RL - Medium Configuration
+# ============================================================
+
+scale_name: Medium
+
+# Scenario
+num_tasks: 60
+map_size: 25.0
+
+# ============================================================
+# Training
+# ============================================================
+
+training:
+  # Phase 1: Behavioral Cloning
+  bc_epochs: 40
+
+  # Phase 2: PPO Fine-tuning
+  rl_episodes: 160
+
+  # Phase 3: Self-Imitation Learning
+  sil_episodes: 200
+
+  # Optimizer
+  learning_rate: 0.0002
+
+  # Loss weights
+  bc_weight: 1.0
+  sil_weight: 0.5
+
+  # PPO exploration temperature
+  rl_temperature_start: 1.5
+  rl_temperature_end: 0.7
+
+  # SIL exploration temperature
+  sil_temperature: 0.8
+
+  # Maximum episode length
+  max_steps_multiplier: 5
+
+  # Reproducibility
+  seed: 42
+
+
+# ============================================================
+# Expert planner
+# ============================================================
+
+expert:
+  expert_solver: heuristic
+
+  cpsat_limit_s: 10.0

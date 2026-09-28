@@ -1,0 +1,21 @@
+# ============================================================
+# UAV-UGV Cooperative Routing RL
+# ============================================================
+
+# Numerical computing
+numpy>=1.26
+
+# Deep learning
+torch>=2.2
+
+# Reinforcement-learning environment API
+gymnasium>=0.29
+
+# YAML experiment configurations
+PyYAML>=6.0
+
+# Expert / CP-SAT planner
+ortools>=9.10
+
+# Testing
+pytest>=8.0
